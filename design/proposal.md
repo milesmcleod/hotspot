@@ -2,6 +2,7 @@ Mango
 Bowtie
 Mixer
 Mixr
+Hotspot
 
 #app_name
 
