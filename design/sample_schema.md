@@ -21,6 +21,7 @@
 | `title`             | string     | not null                       |
 | `owner_id`          | integer    | not null, indexed, foreign key |
 | `public_boolean`    | boolean    | not null                       |
+| `queue_boolean`     | boolean    | not null                       |
 | `created_at`        | datetime   | not null                       |
 | `updated_at`        | datetime   | not null                       |
 
@@ -30,6 +31,29 @@
 | ------------------- | ---------- | ------------------------------ |
 | `id`                | integer    | not null, primary key          |
 | `name`              | string     | not null                       |
-| `yelp_url`          | string?    | not null                       |
+| `yelp_query`        | string     | not null                       |
+| `created_at`        | datetime   | not null                       |
+| `updated_at`        | datetime   | not null                       |
+
+## `listings`
+
+| column name         | data type  | details                        |
+| ------------------- | ---------- | ------------------------------ |
+| `id`                | integer    | not null, primary key          |
+| `spot_id`           | integer    | not null                       |
+| `list_id`           | integer    | not null                       |
+| `owner_id`          | integer    | not null                       |
+| `created_at`        | datetime   | not null                       |
+| `updated_at`        | datetime   | not null                       |
+
+## `recommendations`
+
+| column name         | data type  | details                        |
+| ------------------- | ---------- | ------------------------------ |
+| `id`                | integer    | not null, primary key          |
+| `from_id`           | integer    | not null                       |
+| `to_id`             | integer    | not null                       |
+| `spot_id`           | integer    | not null                       |
+| `content`           | string     | not null                       |
 | `created_at`        | datetime   | not null                       |
 | `updated_at`        | datetime   | not null                       |
