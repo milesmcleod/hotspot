@@ -11,7 +11,17 @@
 | `password_digest`   | string     | not null                       |
 | `session_token`     | string     | not null, indexed, unique      |
 | `created_at`        | datetime   | not null                       |  
-| `updated_at`        | datetime   | not null                       |  
+| `updated_at`        | datetime   | not null                       |
+
+## `connections`
+
+| column name         | data type  | details                        |
+| ------------------- | ---------- | ------------------------------ |
+| `id`                | integer    | not null, primary key          |
+| `user1_id`          | string     | not null                       |
+| `user2_id`          | string?    | not null                       |
+| `created_at`        | datetime   | not null                       |
+| `updated_at`        | datetime   | not null                       |
 
 ## `lists`
 
