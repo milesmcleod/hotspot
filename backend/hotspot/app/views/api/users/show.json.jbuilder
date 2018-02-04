@@ -52,7 +52,7 @@ json.user do
       end
     end
   end
-  
+
   json.pendingConnections do
     @user.pending_connected_users.each do |user|
       json.set! user.id do

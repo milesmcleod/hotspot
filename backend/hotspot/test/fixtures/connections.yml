@@ -2,11 +2,12 @@
 #
 # Table name: connections
 #
-#  id         :integer          not null, primary key
-#  user1_id   :integer          not null
-#  user2_id   :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  requester_id    :integer          not null
+#  requested_id    :integer          not null
+#  pending_boolean :boolean          default(TRUE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -10,6 +10,19 @@ class Api::ConnectionsController < ApplicationController
     end
   end
 
+  def update
+    @connection = current_user.connections.find(params[:id])
+    if @connection
+      if @connection.update_attributes(connection_params)
+        render :show
+      else
+        render json: ['Failed to update connection.'], status: 422
+      end
+    else
+      render json: ['Could not find connection.'], status: 404
+    end
+  end
+
   def destroy
     @connection = current_user.connections.find(params[:id])
     if @connection
@@ -24,7 +37,8 @@ class Api::ConnectionsController < ApplicationController
 
   def connection_params
     params.require(:connection).permit(
-      :requested_id
+      :requested_id,
+      :pending_boolean
     )
   end
 end
