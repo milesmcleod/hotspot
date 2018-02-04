@@ -1,7 +1,8 @@
 class Api::ListsController < ApplicationController
 
   def index
-
+    @lists = current_user.lists
+    render :index
   end
 
   def create
