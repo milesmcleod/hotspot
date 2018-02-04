@@ -18,7 +18,7 @@ json.user do
   json.lists do
     lists.each do |list|
       spot_ids = []
-      @list.listings.each do |listing|
+      list.listings.each do |listing|
         @spot_ids.push(listing.spot_id)
       end
       json.set! list.id do
@@ -26,9 +26,9 @@ json.user do
         json.title list.title
         json.spotIds spot_ids
         json.publicBoolean list.public_boolean
-        json.queueBoolean note.queue_boolean
-        json.updatedAt note.updated_at
-        json.createdAt note.created_at
+        json.queueBoolean list.queue_boolean
+        json.updatedAt list.updated_at
+        json.createdAt list.created_at
       end
     end
   end
@@ -60,8 +60,8 @@ json.user do
         json.recipientId rec.recipient_id
         json.spotId rec.spot_id
         json.content rec.content
-        json.createdAt shortcut.created_at
-        json.updatedAt shortcut.updated_at
+        json.createdAt rec.created_at
+        json.updatedAt rec.updated_at
       end
     end
   end
@@ -73,8 +73,8 @@ json.user do
         json.senderId rec.sender_id
         json.spotId rec.spot_id
         json.content rec.content
-        json.createdAt shortcut.created_at
-        json.updatedAt shortcut.updated_at
+        json.createdAt rec.created_at
+        json.updatedAt rec.updated_at
       end
     end
   end

@@ -17,9 +17,15 @@ class User < ApplicationRecord
   validates :img_url, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
-  has_many :lists
+  has_many :lists,
+  primary_key: :id,
+  foreign_key: :owner_id,
+  class_name: :List
 
-  has_many :listings
+  has_many :listings,
+  primary_key: :id,
+  foreign_key: :owner_id,
+  class_name: :Listing
 
   has_many :spots,
   through: :listings,
@@ -46,12 +52,12 @@ class User < ApplicationRecord
   has_many :received_recommendations,
   primary_key: :id,
   foreign_key: :recipient_id,
-  class_name: :recommendations
+  class_name: :Recommendation
 
   has_many :sent_recommendations,
   primary_key: :id,
   foreign_key: :sender_id,
-  class_name: :recommendations
+  class_name: :Recommendation
 
   attr_reader :password
 

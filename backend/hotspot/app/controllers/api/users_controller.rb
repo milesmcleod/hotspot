@@ -36,7 +36,8 @@ class Api::UsersController < ApplicationController
       @queue = List.new(
         title: "Queue",
         owner_id: @user.id,
-        queue_boolean: true
+        queue_boolean: true,
+        public_boolean: false
       )
       @queue.save
       login(@user)
