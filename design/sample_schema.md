@@ -18,8 +18,8 @@
 | column name         | data type  | details                        |
 | ------------------- | ---------- | ------------------------------ |
 | `id`                | integer    | not null, primary key          |
-| `user1_id`          | string     | not null                       |
-| `user2_id`          | string?    | not null                       |
+| `user1_id`          | integer    | not null                       |
+| `user2_id`          | integer    | not null                       |
 | `created_at`        | datetime   | not null                       |
 | `updated_at`        | datetime   | not null                       |
 
@@ -40,8 +40,7 @@
 | column name         | data type  | details                        |
 | ------------------- | ---------- | ------------------------------ |
 | `id`                | integer    | not null, primary key          |
-| `name`              | string     | not null                       |
-| `yelp_query`        | string     | not null                       |
+| `yelp_name`         | string     | not null                       |
 | `created_at`        | datetime   | not null                       |
 | `updated_at`        | datetime   | not null                       |
 

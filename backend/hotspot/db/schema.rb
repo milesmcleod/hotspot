@@ -10,10 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204004826) do
+ActiveRecord::Schema.define(version: 20180204010317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "connections", force: :cascade do |t|
+    t.integer "user1_id", null: false
+    t.integer "user2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user1_id", "user2_id"], name: "index_connections_on_user1_id_and_user2_id", unique: true
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "spot_id", null: false
+    t.integer "list_id", null: false
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id", "spot_id"], name: "index_listings_on_list_id_and_spot_id", unique: true
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "owner_id", null: false
+    t.string "title", null: false
+    t.boolean "public_boolean", null: false
+    t.boolean "queue_boolean", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id", "title"], name: "index_lists_on_owner_id_and_title", unique: true
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.integer "recipient_id", null: false
+    t.integer "spot_id", null: false
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_recommendations_on_recipient_id"
+    t.index ["sender_id", "recipient_id"], name: "index_recommendations_on_sender_id_and_recipient_id", unique: true
+    t.index ["sender_id"], name: "index_recommendations_on_sender_id"
+  end
+
+  create_table "spots", force: :cascade do |t|
+    t.string "yelp_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["yelp_name"], name: "index_spots_on_yelp_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
