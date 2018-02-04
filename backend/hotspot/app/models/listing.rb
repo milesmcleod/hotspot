@@ -11,4 +11,20 @@
 #
 
 class Listing < ApplicationRecord
+
+  belongs_to :owner,
+  primary_key: :id,
+  foreign_key: :owner_id,
+  class_name: :User
+
+  belongs_to :spot,
+  primary_key: :id,
+  secondary_key: :spot_id,
+  class_name: :Spot
+
+  belongs_to :list,
+  primary_key: :id,
+  foreign_key: :list_id,
+  class_name: :List
+
 end

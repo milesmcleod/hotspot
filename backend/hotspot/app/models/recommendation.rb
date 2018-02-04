@@ -12,4 +12,20 @@
 #
 
 class Recommendation < ApplicationRecord
+
+  belongs_to :sender,
+  primary_key: :id,
+  foreign_key: :sender_id,
+  class_name: :User
+
+  belongs_to :recipient,
+  primary_key: :id,
+  foreign_key: :recipient_id,
+  class_name: :User
+
+  belongs_to :spot,
+  primary_key: :id,
+  foreign_key: :spot_id,
+  class_name: :Spot
+
 end

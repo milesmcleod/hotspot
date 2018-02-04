@@ -17,6 +17,42 @@ class User < ApplicationRecord
   validates :img_url, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many :lists
+
+  has_many :listings
+
+  has_many :spots,
+  through: :listings,
+  source: :spot
+
+  has_many :received_connections,
+  primary_key: :id,
+  foreign_key: :user2_id,
+  class_name: :Connection
+
+  has_many :sent_connections,
+  primary_key: :id,
+  foreign_key: :user1_id,
+  class_name: :Connection
+
+  has_many :received_users,
+  through: :received_connections,
+  source: :user1
+
+  has_many :sent_users,
+  through: :received_connections,
+  source: :user2
+
+  has_many :received_recommendations,
+  primary_key: :id,
+  foreign_key: :recipient_id,
+  class_name: :recommendations
+
+  has_many :sent_recommendations,
+  primary_key: :id,
+  foreign_key: :sender_id,
+  class_name: :recommendations
+
   attr_reader :password
 
   before_validation :ensure_session_token
@@ -31,13 +67,17 @@ class User < ApplicationRecord
   end
 
   def self.find_by_credentials(name, password)
-    @user = User.includes(:notes, :notebooks, :tags, :taggings).find_by(email: name)
-    @user ||= User.includes(:notes, :notebooks, :tags, :taggings).find_by(username: name)
+    @user = User.find_by(email: name)
+    @user ||= User.find_by(username: name)
     if @user && @user.is_password?(password)
       return @user
     else
       return nil
     end
+  end
+
+  def connected_users
+    self.received_users + self.sent_users
   end
 
   def ensure_session_token

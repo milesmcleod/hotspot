@@ -32,13 +32,12 @@ class Api::UsersController < ApplicationController
     end
     @user.username = @user.email.dup[0...idx]
     if @user.save
-      @notebook = Notebook.new(
-        title: "#{@user.username}'s notebook",
-        owner_id: @user.id
+      @queue = List.new(
+        title: "Queue",
+        owner_id: @user.id,
+        queue_boolean: true
       )
-      @notebook.save
-      @user.default_notebook_id = @notebook.id
-      @user.save
+      @queue.save
       login(@user)
       render :show
     else

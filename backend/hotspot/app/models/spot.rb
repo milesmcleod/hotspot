@@ -9,4 +9,27 @@
 #
 
 class Spot < ApplicationRecord
+
+  has_many :listings,
+  primary_key: :id,
+  foreign_key: :spot_id,
+  class_name: :Listing
+
+  has_many :listers,
+  through: :listings,
+  source: :owner
+
+  has_many :lists,
+  through: :listings,
+  source: :list
+
+  has_many :recommendations,
+  primary_key: :id,
+  foreign_key: :spot_id,
+  class_name: :Recommendation
+
+  has_many :recommenders,
+  through: :recommendations,
+  source: :Sender
+
 end
