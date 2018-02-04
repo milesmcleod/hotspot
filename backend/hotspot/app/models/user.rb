@@ -33,21 +33,21 @@ class User < ApplicationRecord
 
   has_many :received_connections,
   primary_key: :id,
-  foreign_key: :user2_id,
+  foreign_key: :requestee_id,
   class_name: :Connection
 
   has_many :sent_connections,
   primary_key: :id,
-  foreign_key: :user1_id,
+  foreign_key: :requested_id,
   class_name: :Connection
 
   has_many :received_users,
   through: :received_connections,
-  source: :user1
+  source: :requester
 
   has_many :sent_users,
   through: :received_connections,
-  source: :user2
+  source: :requested
 
   has_many :received_recommendations,
   primary_key: :id,
@@ -83,7 +83,29 @@ class User < ApplicationRecord
   end
 
   def connected_users
-    self.received_users + self.sent_users
+    received = self.received_connections.where(pending_boolean: false)
+    sent = self.sent_connections.where(pending_boolean: false)
+    array = []
+    received.each do |connection|
+      array.push(connection.requester)
+    end
+    sent.each do |connection|
+      array.push(connection.requested)
+    end
+    array
+  end
+
+  def pending_connected_users
+    received = self.received_connections.where(pending_boolean: true)
+    sent = self.sent_connections.where(pending_boolean: true)
+    array = []
+    received.each do |connection|
+      array.push(connection.requester)
+    end
+    sent.each do |connection|
+      array.push(connection.requested)
+    end
+    array
   end
 
   def ensure_session_token

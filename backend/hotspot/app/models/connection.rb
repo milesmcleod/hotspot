@@ -11,14 +11,14 @@
 
 class Connection < ApplicationRecord
 
-  belongs_to :user1,
+  belongs_to :requester,
   primary_key: :id,
-  foreign_key: :user1_id,
+  foreign_key: :requester_id,
   class_name: :User
 
-  belongs_to :user2,
+  belongs_to :requested,
   primary_key: :id,
-  foreign_key: :user2_id,
+  foreign_key: :requested_id,
   class_name: :User
 
 end

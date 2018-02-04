@@ -185,8 +185,8 @@ while i < users.length
   j = i + 1
   while j < users.length
     Connection.create(
-      user1_id: users[i].id,
-      user2_id: users[j].id
+      requester_id: users[i].id,
+      requested_id: users[j].id
     )
     j += 1
   end
@@ -208,14 +208,14 @@ RECS = [
 
 Connection.all.each do |connection|
   Recommendation.create(
-    sender_id: connection.user1_id,
-    recipient_id: connection.user2_id,
+    sender_id: connection.requester_id,
+    recipient_id: connection.requested_id,
     spot_id: Spot.all[rand(Spot.all.length)].id,
     content: RECS[rand(RECS.length)]
   )
   Recommendation.create(
-    sender_id: connection.user2_id,
-    recipient_id: connection.user1_id,
+    sender_id: connection.requested_id,
+    recipient_id: connection.requester_id,
     spot_id: Spot.all[rand(Spot.all.length)].id,
     content: RECS[rand(RECS.length)]
   )

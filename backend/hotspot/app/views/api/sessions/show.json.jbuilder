@@ -40,6 +40,15 @@ json.connections do
   end
 end
 
+json.pendingConnections do
+  @user.pending_connected_users.each do |user|
+    json.set! user.id do
+      json.id user.id
+      json.username user.username
+    end
+  end
+end
+
 json.sentRecommendations do
   @user.sent_recommendations.each do |rec|
     json.set! rec.id do

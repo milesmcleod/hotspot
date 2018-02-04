@@ -2,7 +2,7 @@ class Api::ConnectionsController < ApplicationController
 
   def create
     @connection = Connection.new(connection_params)
-    @connection.user1_id = current_user.id
+    @connection.requester_id = current_user.id
     if @connection.save
       render :show
     else
@@ -24,7 +24,7 @@ class Api::ConnectionsController < ApplicationController
 
   def connection_params
     params.require(:connection).permit(
-      :user2_id
+      :requested_id
     )
   end
 end
