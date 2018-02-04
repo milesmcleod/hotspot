@@ -1,9 +1,5 @@
 class Api::RecommendationsController < ApplicationController
 
-  def index
-    @recommendations = current_user.sent_recommendations
-    render :index
-  end
 
   def create
     @recommendation = Recommendation.new(recommendation_params)

@@ -1,10 +1,5 @@
 class Api::ConnectionsController < ApplicationController
 
-  def index
-    @connections = current_user.connections
-    render :index
-  end
-
   def create
     @connection = Connection.new(connection_params)
     @connection.user1_id = current_user.id

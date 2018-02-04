@@ -1,10 +1,5 @@
 class Api::ListingsController < ApplicationController
 
-  def index
-    @listings = current_user.listings
-    render :index
-  end
-
   def create
     @listing = Listing.new(listing_params)
     @listing.owner_id = current_user.id
