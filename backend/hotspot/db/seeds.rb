@@ -6,6 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Recommendation.destroy_all
+Connection.destroy_all
+Listing.destroy_all
+List.destroy_all
+Spot.destroy_all
+
+IMAGES = [
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-1.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-2.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-3.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-4.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-5.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-6.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-7.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-8.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-9.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-0.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-11.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-12.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-13.png",
+  "https://raw.githubusercontent.com/milesmcleod/purplenote-images/master/avatar_images/avatar-14.png",
+]
 
 
 # USERS
@@ -13,32 +37,42 @@
 users = []
 
 user1 = User.new(
+  username: 'wanda',
   email: 'wanda@gmail.com',
-  password: 'password'
+  password: 'password',
+  img_url: IMAGES.shuffle[0]
 )
 user1.save
 
 user2 = User.new(
+  username: 'delzano',
   email: 'delzano@gmail.com',
-  password: 'password'
+  password: 'password',
+  img_url: IMAGES.shuffle[0]
 )
 user2.save
 
 user3 = User.new(
+  username: 'harold',
   email: 'harold@gmail.com',
-  password: 'password'
+  password: 'password',
+  img_url: IMAGES.shuffle[0]
 )
 user3.save
 
 user4 = User.new(
+  username: '__tangus__',
   email: '__tangus__@gmail.com',
-  password: 'password'
+  password: 'password',
+  img_url: IMAGES.shuffle[0]
 )
 user4.save
 
 user5 = User.new(
+  username: 'ella',
   email: 'ella@gmail.com',
-  password: 'password'
+  password: 'password',
+  img_url: IMAGES.shuffle[0]
 )
 user5.save
 
@@ -131,7 +165,7 @@ spot10.save
 Spot.all.each do |spot|
   list_ids = []
   [0, 1, 3, 4, 4, 4, 5, 6, 7].shuffle.pop.times do
-    list = List.all.shuffle.pop
+    list = List.all.shuffle[0]
     unless list_ids.include?(list.id)
       Listing.new(
         spot_id: spot.id,
@@ -154,6 +188,7 @@ while i < users.length
       user1_id: users[i].id,
       user2_id: users[j].id
     )
+    j += 1
   end
   i += 1
 end
