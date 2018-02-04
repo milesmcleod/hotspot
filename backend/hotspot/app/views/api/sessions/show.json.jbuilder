@@ -6,7 +6,7 @@ json.lists do
   @user.lists.each do |list|
     spot_ids = []
     list.listings.each do |listing|
-      @spot_ids.push(listing.spot_id)
+      spot_ids.push(listing.spot_id)
     end
     json.set! list.id do
       json.id list.id

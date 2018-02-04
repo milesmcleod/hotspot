@@ -167,7 +167,7 @@ Spot.all.each do |spot|
   [0, 1, 3, 4, 4, 4, 5, 6, 7].shuffle.pop.times do
     list = List.all.shuffle[0]
     unless list_ids.include?(list.id)
-      Listing.new(
+      Listing.create(
         spot_id: spot.id,
         list_id: list.id,
         owner_id: list.owner_id

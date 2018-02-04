@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :connections, only: [:index, :create, :destroy]
     resources :listings, only: [:index, :create, :destroy]
     resources :lists, only: [:index, :create, :update, :destroy]
-    resources :spots, only: [:index, :create, :update, :destroy]
+    resources :spots, only: [:index, :show, :create, :update, :destroy]
     resources :recommendations, only: [:index, :create, :update, :destroy]
   end
 end

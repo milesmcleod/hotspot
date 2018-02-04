@@ -5,6 +5,11 @@ class Api::SpotsController < ApplicationController
     render :index
   end
 
+  def show
+    @spot = Spot.find(params[:id])
+    render :show
+  end
+
   def create
     @spot = Spot.new(spot_params)
     @spot.sender_id = current_user.id
